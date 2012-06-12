@@ -10,6 +10,10 @@ In the context of Linked Data, Sonda is an efficient approach to find candidate 
 
 This implementation requires as input a source and target Sparql Endpoint, as well as a class of source instances. 
 
+For each source instance, sound outputs a set of candidate matches, that later can be refined by a more advanced matching techinique.
+
+You can have a look also in this repository: https://github.com/samuraraujo/SondaSerimi, where we forward the Sonda output directly to Serimi[1], an approach for refine candidate matches.
+
 ## Installation 
 Sonda was implemented in Ruby. We recommend you install JRuby version of Ruby, using the RVM version manager. 
 You find more information about RVM here:
