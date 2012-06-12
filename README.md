@@ -12,7 +12,7 @@ This implementation requires as input a source and target Sparql Endpoint, as we
 
 For each source instance, Sonda outputs a set of candidate matches, that later can be refined by a more advanced matching techinique.
 
-You can have a look also in this repository: https://github.com/samuraraujo/SondaSerimi, where we implemented Sonda together with Serimi[1], an approach for refine candidate matches.
+You can have a look also in this repository: https://github.com/samuraraujo/SondaSerimi, where we implemented Sonda together with Serimi[1], an approach for refining candidate matches.
 In this implementation, we forward the Sonda's output directly to Serimi, which produces a final match for each source instance, given the candidate produced by Sonda.
 
 ## Installation 
