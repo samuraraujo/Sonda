@@ -4,7 +4,7 @@
 
 Sonda is a portuguese word to refer to a device used to explore the unknown deep ocean.
 
-In the context of Linked Data, Sonda is an efficient approach to find candidate matches for a set of source instances.
+In the context of Linked Data, Sonda is an efficient and effective approach to find candidate matches for a set of source instances.
 
 ## Implementation Details
 
