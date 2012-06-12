@@ -77,6 +77,6 @@ We recommend to use the same gem versions than shown above.
  
 ## Usage
 
-Below, we give an example of use of Sonda. There we try to find candidate matches for the class SideEffect from Sider dataset on DBPedia dataset.
+Below, we give an example of use of Sonda. In this example, we try to find candidate matches for the class SideEffect from Sider dataset on DBPedia dataset.
 
 	ruby sonda.rb -s http://www4.wiwiss.fu-berlin.de/sider/sparql -t http://dbpedia.org/sparql -c http://www4.wiwiss.fu-berlin.de/sider/resource/sider/side_effects 
