@@ -11,12 +11,12 @@ class BranchAndBound < XSearch
     start = XNode.new("start",1)
     # @decision = DecisionTreeSelectionAlgorithm.new()
     xsearch(start)
-    puts "##############################################"
-    puts "TRANSITION HISTORY"
-    XNode.transitions.each{|x|
-      puts  x.to_s
-      puts  x.history.to_s
-    }
+    # puts "##############################################"
+    # puts "TRANSITION HISTORY"
+    # XNode.transitions.each{|x|
+      # puts  x.to_s
+      # puts  x.history.to_s
+    # }
   end
 
   def local_path()

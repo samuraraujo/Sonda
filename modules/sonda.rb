@@ -131,5 +131,8 @@ puts "Being verbose" if options[:verbose]
 puts "Logging to file #{options[:logfile]}" if options[:logfile]
 $current_dir = File.dirname(__FILE__)
  require 'initializer'
-
+ t1=Time.now()
  Initializer.new(options)
+t2 = Time.now() - t1
+puts "########## CANDIDATE GENERATED IN THE OUTPUT FILE ############"
+puts "Elapse Time(s): #{t2}"
