@@ -17,7 +17,7 @@ In this implementation, we forward the Sonda's output directly to Serimi, which 
 
 ## Installation 
 Sonda was implemented in Ruby. We recommend you install JRuby version of Ruby, using the RVM version manager. 
-You find more information about RVM here:
+For more information about RVM, visit:
 
 https://rvm.io/
 
