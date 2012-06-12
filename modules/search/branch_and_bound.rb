@@ -1,10 +1,12 @@
 require    File.dirname(__FILE__) +'/transitionselection.rb'
 require    File.dirname(__FILE__) +'/query_components.rb'
-require    File.dirname(__FILE__) +'/xnode.rb' 
+require    File.dirname(__FILE__) +'/xnode.rb'
+
 class BranchAndBound < XSearch
   def search()
     @@candidates=[]
     @@instances=[]
+    $output =  File.open($output, 'a') if $output.class == String
     start = XNode.new("start",1)
     # @decision = DecisionTreeSelectionAlgorithm.new()
     xsearch(start)
@@ -24,15 +26,13 @@ class BranchAndBound < XSearch
     @targetkeys = XNode.transitions.map{|x| x.qa.attribute_alignment.target }.uniq
     while(start != nil)
       start = find(start)
-      #solve for the instances that have been already found
-      if $chunk == @@instances.size
-        XNode.solver.solve( @@candidates,@@instances)
-      @@candidates=[]
-      @@instances=[]
-      end
+    #solve for the instances that have been already found
     end
-    XNode.solver.solve( @@candidates,@@instances)
-
+    @@instances.each_index{|idx|
+      @@candidates[idx].map{|s,p,o| s}.uniq.each{|i|
+        $output.write(@@instances[idx].to_s.gsub(/[<>]/,"") + "=" + i.to_s.gsub(/[<>]/,"") + "\n" )
+      }
+    }
     return nil
   end
 
@@ -46,25 +46,24 @@ class BranchAndBound < XSearch
     cost = Hash.new
     XNode.selector.restart()#save heap space. Before I create one instance for each xnode. it was too cost.
 
-     
-    @targetkeys.each{|x| 
+    @targetkeys.each{|x|
       nodes[x]=[]
       cost[x]=0
-      }
-     
-    while children.size > 0  
+    }
+
+    while children.size > 0
       node = children.delete_at(0)
       key =node.transition.qa.attribute_alignment.target
       next if cost[key] == 1
-         
+
       if XNode.selector.process(node)
         puts "COMPUTING COST"
-        cost[key] = node.cost()
-        # children = pruning(node,children)
-        
+      cost[key] = node.cost()
+      # children = pruning(node,children)
+
       nodes[key] << node
       end
-      
+
       if node.number < XNode.learningsize * 0.1
       cost[key]  = 0 #keep evaluating all queries during the ranking and training phase
       end
@@ -74,12 +73,12 @@ class BranchAndBound < XSearch
     nodes = nodes.values.map{|x|
       x.sort{|a,b| a.cost <=> b.cost}.first
     }.compact
-    
+
     best =  nodes.sort{|a,b| a.cost <=> b.cost}.first
     return first if best == nil
     if best.cost != XNode::MAX_COST
       candidates = []
-      nodes.each{|x| 
+      nodes.each{|x|
         candidates = candidates + x.candidate.elements
       }
 

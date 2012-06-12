@@ -9,7 +9,6 @@ require 'active_support/inflector'
 
 # require "search_module.rb"
 require  File.dirname(__FILE__)+"/solver/serimi_module.rb"
-require  File.dirname(__FILE__)+"/solver/serimi_class.rb"
 require  File.dirname(__FILE__)+"/solver/class_builder.rb"
 require  File.dirname(__FILE__)+'/alignment/attribute-assign.rb'
 require  File.dirname(__FILE__)+'/datamodel/datasource.rb'
@@ -88,11 +87,11 @@ class Initializer
       puts $alignments
       t1 = Time.now()
 
-      solver = Serimi.new()
+       
       $limit = $instances.size if $limit == nil
       puts" $limit"
       puts $limit
-      eval(params[:searcher]).new($instances[0..$limit],$alignments,solver,ranker, selector,$learning,$transitionfailurerate).search()
+      eval(params[:searcher]).new($instances[0..$limit],$alignments,nil,ranker, selector,$learning,$transitionfailurerate).search()
 
       
     }
