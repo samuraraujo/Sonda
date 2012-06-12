@@ -98,7 +98,7 @@ class CandidateSet
     end
     
     #faster way to get the triples from the endpoint
-    b = union_query(b,$session[:target])
+    b = union_query(b,$session[:target]) if $donotunion == nil
 
     # puts "CANDIDATES"
     # puts query

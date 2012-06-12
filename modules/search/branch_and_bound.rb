@@ -6,6 +6,7 @@ class BranchAndBound < XSearch
   def search()
     @@candidates=[]
     @@instances=[]
+    $donotunion=true #used to avoid the search to collect all triples for an instance.
     $output =  File.open($output, 'a') if $output.class == String
     start = XNode.new("start",1)
     # @decision = DecisionTreeSelectionAlgorithm.new()
